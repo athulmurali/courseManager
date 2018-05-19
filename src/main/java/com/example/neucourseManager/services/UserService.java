@@ -1,7 +1,7 @@
-package com.example.courseManager.services;
+package com.example.neucourseManager.services;
 
-import com.example.courseManager.models.User;
-import com.example.courseManager.repositories.UserRepository;
+import com.example.neucourseManager.models.User;
+import com.example.neucourseManager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 @RestController
 public class UserService {
 	@Autowired
-    UserRepository repository;
+	UserRepository repository;
 
 	@DeleteMapping("/api/user/{userId}")
 	public void deleteUser(@PathVariable("userId") int id) {

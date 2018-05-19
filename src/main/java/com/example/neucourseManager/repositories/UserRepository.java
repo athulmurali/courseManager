@@ -1,10 +1,10 @@
-package com.example.courseManager.repositories;
+package com.example.neucourseManager.repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.example.courseManager.models.User;
+import com.example.neucourseManager.models.User;
 
 public interface UserRepository
 	extends CrudRepository<User, Integer>{

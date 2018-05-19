@@ -1,4 +1,4 @@
-package com.example.courseManager.models;
+package com.example.neucourseManager.models;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,7 +1,7 @@
-package com.example.courseManager.services;
+package com.example.neucourseManager.services;
 
-import com.example.courseManager.models.Hello;
-import com.example.courseManager.repositories.HelloRepository;
+import com.example.neucourseManager.models.Hello;
+import com.example.neucourseManager.repositories.HelloRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
