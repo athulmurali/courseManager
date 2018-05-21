@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 
-    <title>Course Manager :Manage Users</title>
+    <title>Course Manager: Registration</title>
     <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -17,20 +17,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!--<script src="../../services/user.service.client.js"></script>-->
-    <script src="user-login-controller.js"></script>
-    <link rel="stylesheet" href="./user-login-style.css">
-
-
-
-
+    <script src="user-register-controller.js"></script>
+    <link rel="stylesheet" href="user-register-style.css">
 
 </head>
-<body>
+
 
 <div class="user">
     <header class="user__header">
         <img src="https://cdn1.imggmi.com/uploads/2018/5/17/0d35483b3ee286472ca7081cff19cc85-full.png" alt="" />
-        <h1 class="user__title">Sign Up !</h1>
+        <h1 >Sign Up !</h1>
     </header>
 
     <form class="form">
@@ -38,7 +34,16 @@
             <input type="text" placeholder="Username" class="form__input" />
         </div>
 
-        <div class="form__group">
+            <div class="form__group">
+                <input type="text" placeholder="First Name" class="form__input" />
+            </div>
+
+            <div class="form__group">
+                <input type="text" placeholder="Last Name" class="form__input" />
+            </div>
+
+
+            <div class="form__group">
             <input type="email" placeholder="Email" class="form__input" />
         </div>
 
@@ -51,7 +56,22 @@
             <input type="password" placeholder="confirm password" class="form__input" />
         </div>
 
-        <button class="btn" type="button">Register</button>
+
+        <div class="form_group">
+
+            <select id="role"  class="form__input">
+                    <option value="student" selected >student</option>
+                    <option value="faculty">faculty</option>
+                </select>
+        </div>
+
+        <div class="form_group">
+           <label> Date of birth</label>
+
+         <input id="dob" type="date" style="border-radius: 5px">
+        </div>
+
+        <button class="btn" type="button" id="register">Register</button>
     </form>
 </div>
 </body>
