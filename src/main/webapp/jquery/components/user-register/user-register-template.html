@@ -29,7 +29,9 @@
         <h1 >Sign Up !</h1>
     </header>
 
-    <form class="form">
+    <div id="formContainer">
+
+    <form class="form" id ="userForm">
         <div class="form__group">
             <input type="text" placeholder="Username" class="form__input"  id="username"/>
         </div>
@@ -73,6 +75,21 @@
 
         <button class="btn" type="button" id="register">Register</button>
     </form>
+
+    <div class="card rounded" id="successCard" style="display: none;">
+            <div class="card-img-top row">
+
+                <i class="mx-auto fas fa-check-circle fa-6x" style="padding: 10%"></i>
+            </div>
+
+            <div class="card-body ">
+                <h5 class="card-title">Registration Successful! </h5>
+                <p class="card-text">An activation mail has been sent to your registered email. It should be there within 5 minutes. Please check your inbox. </p>
+                <a href="#" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+
+    </div>
 </div>
 </body>
 </html>

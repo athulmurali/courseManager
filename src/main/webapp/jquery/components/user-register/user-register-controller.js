@@ -11,12 +11,26 @@ function register(){
         console.log(user);
 
         var userService = new UserServiceClient();
-        userService.createUser(user);
+        userService.createUser(user).then(function (response)
+        {
+            console.log(response.status == 200 );
+            replaceFromWithSuccess();
+        });
 
     }
 
 }
 
+function replaceFromWithSuccess(){
+    console.log($('#formContainer'));
+
+    $('#userForm').hide();
+    // document.getElementById('userForm').style(display:none)
+    $('#successCard').show();
+
+
+    console.log("form replaced");
+}
 
 function getUserDetailsFromForm() {
     const userName = $('#username').val();

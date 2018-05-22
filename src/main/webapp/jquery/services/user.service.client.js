@@ -12,7 +12,7 @@ function UserServiceClient() {
     var self = this;
 
     function login(username, password) {
-        return fetch(self.login, {
+        return fetch(self.loginURL, {
             method: 'post',
             body: JSON.stringify({username:username, password: password}),
             headers: {
