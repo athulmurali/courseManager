@@ -12,6 +12,20 @@
         template = $('.template');
         $('#createUser').click(createUser);
 
+        // the following is for filtering existing users and search
+
+
+
+        $("#usernameFld").keyup(filterByValue).change(filterByValue);
+        $("#firstNameFld").keyup(filterByValue).change(filterByValue);
+        $("#lastNameFld").keyup(filterByValue).change(filterByValue);
+        $("#role").change(filterByValue);
+
+
+
+
+
+
         findAllUsers();
     }
 
@@ -127,6 +141,43 @@
 
             })
         });
+
+    }
+
+
+    function filterByFields(userArray){
+
+         const userNameVal =  $('#usernameFld').val()
+         const firsNameVal =  $('#firstNameFld').val()
+         const lastNameVal  = $('#lastNameFld').val()
+         const  roleVal  = $('#role').val()
+
+
+        const oldArray = userArray
+        var newArray = new Set();
+        for (var  i in userArray){
+
+            if ((userNameVal == "" || (userNameVal != "" && oldArray[i].username.startsWith(userNameVal))) &&
+
+
+            ( (firsNameVal == "")||(firsNameVal != "" && oldArray[i].firstName.startsWith(firsNameVal))) &&
+
+
+
+            (lastNameVal == "")||(lastNameVal != "" && oldArray[i].lastName.startsWith(lastNameVal)))
+
+
+                newArray.add(oldArray[i]);
+
+        }
+        return [...newArray];
+
+    }
+    function filterByValue(){
+        console.log("Text filed value changed ! ");
+        console.log("Printing current values in the text boxes");
+
+        console.log(userService.findAllUsers().then(filterByFields).then(renderUsers));
 
     }
 

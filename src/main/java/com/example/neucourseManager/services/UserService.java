@@ -3,6 +3,8 @@ package com.example.neucourseManager.services;
 import com.example.neucourseManager.models.User;
 import com.example.neucourseManager.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +26,20 @@ public class UserService {
 	}
 
 	@PostMapping("/api/login")
-	public List<User> login(@RequestBody User user) {
-		return (List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword());
-	}
+	public ResponseEntity<Object> login(@RequestBody User user) {
+		System.out.println("\n\n\n\n\n " + user.getUsername() + "  " + user.getPassword());
+		System.out.println(repository.findUserByCredentials(user.getUsername(), user.getPassword()));
+		if(! ((List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword())).isEmpty())
+		{
+		    System.out.println("User found!");
+		    // send token
+            return ResponseEntity.status(HttpStatus.OK).build();
+		}
+		else {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+
+        }
+    }
 
 	@GetMapping("/api/user")
 	public List<User> findAllUsers() {

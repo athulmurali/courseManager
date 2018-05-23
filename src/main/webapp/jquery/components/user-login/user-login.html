@@ -17,11 +17,33 @@
 
     <script src="../../services/user.service.client.js"></script>
     <script src="user-login-controller.js"></script>
+    <script src="../../common-utils/redirections.js"></script>
+
     <link rel="stylesheet" href="./user-login-style.css">
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">NEU Course Manager</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="nav navbar-nav ml-auto">
+
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" id ="register">Register</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container user">
+
+
     <header class="user__header">
         <img src="https://cdn1.imggmi.com/uploads/2018/5/17/0d35483b3ee286472ca7081cff19cc85-full.png" alt="" />
         <h1 class="user__title">Login</h1>
