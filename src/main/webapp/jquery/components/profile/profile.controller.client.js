@@ -1,4 +1,5 @@
 (function() {
+    jQuery(main);
     $(init);
 
     var $staticEmail;
@@ -8,13 +9,13 @@
     var userService = new UserServiceClient();
 
     function init() {
-        $staticEmail = $("#staticEmail");
+        $staticEmail = $("#email");
         $firstName = $("#firstName");
         $lastName = $("#lastName");
         $updateBtn = $("#updateBtn")
             .click(updateUser);
 
-        findUserById(12);
+        // findUserById(12);
     }
 
     function updateUser() {
@@ -41,7 +42,7 @@
             .findUserById(userId)
             .then(renderUser);
     }
-    
+
     function renderUser(user) {
         console.log(user);
         $staticEmail.val(user.username);
@@ -49,3 +50,10 @@
         $lastName.val(user.lasteName);
     }
 })();
+
+function main()
+{
+    $('#logout').click(redirectToLogin)
+
+}
+
