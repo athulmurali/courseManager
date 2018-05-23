@@ -20,11 +20,9 @@ public class Emailer{
 
     Properties emailProp;
 
-    private static final String[] TEAM = {
-            "athulmurali@hotmail.com"}; // list of team members to be notified
 
     // default from address for team notification
-    private static final  String DEFAULT_FROM = "blacksheepdetector@gmail.com";
+    private static final  String DEFAULT_FROM =  "neucoursemanager@gmail.com";
 
 
     /**
@@ -38,13 +36,14 @@ public class Emailer{
     /**
      * @param textBody the body of the email to be sent
      * @param subject the subject of the email
-     * @param sender the email address of the sender | not same as user name
-     * @param recipients the list of recipients | to addresses
      * @throws AddressException
      * @throws MessagingException
      */
-    public void sendEmail(String textBody, String subject, String sender,
-                          String[] recipients) throws  MessagingException {
+    public void sendEmail( String toEmailId, String subject,String textBody) throws  MessagingException {
+
+        String sender = DEFAULT_FROM;
+
+        String[] recipients  = {toEmailId};
 
 
         // Session created based upon the email server properties obj

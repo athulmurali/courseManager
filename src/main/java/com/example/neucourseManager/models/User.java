@@ -8,6 +8,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	private String email;
 	private String username;
 	private String password;
 	private String firstName;
@@ -61,5 +62,13 @@ public class User {
 
 	public void setDob(Date dob) {
 		this.dob = dob;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
