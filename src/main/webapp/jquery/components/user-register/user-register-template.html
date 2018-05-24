@@ -54,6 +54,10 @@
     <form class="form" id ="userForm">
         <div class="form__group">
             <input type="text" placeholder="Username" class="form__input"  id="username"/>
+            <small id="userNameHelp" class="text-muted">
+               userName must be alphanumeric
+            </small>
+
         </div>
 
             <div class="form__group">
@@ -67,11 +71,12 @@
 
             <div class="form__group">
             <input type="email" placeholder="Email" class="form__input" id="email"/>
+            <span  id="emailAvailable"></span>
         </div>
 
             <div class="form__group">
             <input type="password" placeholder="Password" class="form__input" id="password"/>
-                <small id="passwordHelpInline" class="text-muted">
+                <small id="passwordHelp" class="text-muted">
                     Must be 8-20 characters long.
                 </small>
 
@@ -91,10 +96,20 @@
                 </select>
         </div>
 
-        <div class="form_group">
-           <label> Date of birth</label>
 
-         <input id="dob" type="date" style="border-radius: 5px">
+
+        <div class="form__group">
+            <input type="tel" placeholder="Mobile Number" class="form__input" id="phoneNo"/>
+        </div>
+        <small id="phoneNoHelp" class="text-muted">
+            Must be valid 10 digit phone number
+        </small>
+
+
+        <div class="form_group">
+            <label> Date of birth</label>
+
+            <input id="dob" type="date" style="border-radius: 5px">
         </div>
 
         <button class="btn" type="button" id="register">Register</button>
