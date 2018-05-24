@@ -82,13 +82,13 @@
 		</plugins>
 
 		<resources>
-			<resource>
-				<directory>${project.basedir}/src/main/java</directory>
-				<filtering>true</filtering>
-				<includes>
-					<include>**/*.properties</include>
-				</includes>
-			</resource>
+                <resource>
+                    <directory>resources</directory>
+                    <targetPath>${project.build.outputDirectory}</targetPath>
+                    <includes>
+                        <include>emailConfig.properties</include>
+                    </includes>
+                </resource>
 		</resources>
 	</build>
 
