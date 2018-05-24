@@ -17,6 +17,8 @@ function UserServiceClient() {
         '/api/user/forgotPassword';
     this.resetPasswordURL =
         '/api/user/resetPassword';
+    this.isEmailAvailableURL=
+        '/api/isEmailAvailable'
     var self = this;
 
     function login(username, password) {
@@ -99,4 +101,19 @@ function UserServiceClient() {
             }
         });
     }
+
+    function isEmailAvailable(email)
+    {
+        return fetch(self.isEmailAvailableURL, {
+            method: 'post',
+            body: JSON.stringify({
+                email : email
+            }),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+
+    }
+
 }
