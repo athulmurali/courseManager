@@ -5,10 +5,18 @@ function UserServiceClient() {
     this.findUserById = findUserById;
     this.updateUser = updateUser;
     this.login = login ;
+    this.emailResetPasswordLink = emailResetPasswordLink;
+    this.resetPassword = resetPassword;
+
+
     this.url =
         '/api/user';
     this.loginURL =
         '/api/login';
+    this.forgotPasswordURL =
+        '/api/user/forgotPassword';
+    this.resetPasswordURL =
+        '/api/user/resetPassword';
     var self = this;
 
     function login(username, password) {
@@ -62,6 +70,30 @@ function UserServiceClient() {
         return fetch(self.url, {
             method: 'post',
             body: JSON.stringify(user),
+            headers: {
+                'content-type': 'application/json'
+            }
+        });
+    }
+
+    function emailResetPasswordLink(email){
+        return fetch(self.forgotPasswordURL,{
+            method: 'post',
+            body: JSON.stringify({email :email}),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+
+    }
+
+    function resetPassword(reset_token,new_password){
+        return fetch(self.resetPasswordURL, {
+            method: 'post',
+            body: JSON.stringify({
+                reset_token: reset_token,
+                password:new_password
+            }),
             headers: {
                 'content-type': 'application/json'
             }

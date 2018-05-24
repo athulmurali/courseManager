@@ -32,10 +32,10 @@
         <ul class="nav navbar-nav ml-auto">
 
             <li class="nav-item active">
-                <a class="nav-link" href="#">Login</a>
+                <a class="nav-link" href="#" id="navLogin">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" id ="register">Register</a>
+                <a class="nav-link" href="#" id ="navRegister">Register</a>
             </li>
         </ul>
     </div>
@@ -49,7 +49,17 @@
         <h1 class="user__title">Login</h1>
     </header>
 
+
     <form class="form">
+
+        <div class ="row col" id="invalidCredentialsUser" style="display: none">
+            <div class="form__group">
+                <label>
+                    <h6> Error : invalid username or password!</h6>
+                </label>
+            </div>
+
+        </div>
         <div class="form__group">
             <input type="text" id="userName" placeholder="Username" class="form__input" />
         </div>

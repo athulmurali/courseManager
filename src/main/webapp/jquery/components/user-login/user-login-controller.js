@@ -8,14 +8,18 @@ function login(){
         {
             console.log(response)
             if (response.status == 200) redirectToProfile();
-            else console.log("Failure");
+            else{
+                $('#invalidCredentialsUser').show();
+            }
 
         });
 }
 
 function main() {
+    $('#navRegister').click(redirectToRegister);
+    $('#navLogin').click(redirectToLogin);
+
     $('#login').click(login);
-    $('#register').click(redirectToRegister);
     $('#forgotPassword').click(redirectToForgotPassword);
 
 

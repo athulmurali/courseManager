@@ -58,11 +58,9 @@ function getUserDetailsFromForm() {
 }
 
 function main() {
+    $('#navRegister').click(redirectToRegister);
+    $('#navLogin').click(redirectToLogin);
     $('#register').click(register);
-
-    // var user = {
-    //     username    : "username",
-    //     firstName   : "First",
 
 }
 //IIFE
