@@ -31,7 +31,7 @@ function updateUser() {
 
     var user = getUserDetailsFromForm();
     var userService = new UserServiceClient();
-    userService.updateUser(12, user).then(success);
+    userService.updateUser(getUserId(), user).then(success);
     console.log("user-updated");
 }
 

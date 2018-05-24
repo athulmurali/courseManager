@@ -22,6 +22,5 @@ public class DemoApplication extends SpringBootServletInitializer {
 		SpringApplication.run(DemoApplication.class, args);
 
 
-
 	}
 }

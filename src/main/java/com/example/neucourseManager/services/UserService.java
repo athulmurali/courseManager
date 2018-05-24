@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import org.springframework.core.env.Environment;
+
 
 
 @RestController
@@ -175,5 +175,18 @@ public class UserService {
 
 
     }
+
+
+    @PostMapping("/api/isEmailAvailable")
+    public ResponseEntity<Object> isEmailAvailable(@RequestBody User user){
+         if (repository.findUserByEmail(user.getEmail()).iterator().hasNext())
+             // if the list is not empty it has next in iterator;
+             // then  it means the email is already taken
+             return ResponseEntity.status(HttpStatus.CONFLICT).build();
+
+         else return ResponseEntity.status(HttpStatus.OK).build();
+
+    }
+
 
 }

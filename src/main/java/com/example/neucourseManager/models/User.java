@@ -15,6 +15,9 @@ public class User {
 	private String lastName;
 	private String role;
 	private Date dob;
+
+
+	private String phone;
 	private String reset_token;
 
 	public int getId() {
@@ -81,4 +84,13 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 }
