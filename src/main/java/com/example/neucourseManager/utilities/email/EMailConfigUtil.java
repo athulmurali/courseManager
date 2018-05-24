@@ -13,7 +13,7 @@ public class EMailConfigUtil {
 
 
     //name of the config file
-    private static final String FILE_NAME = "application.properties";
+    private static final String FILE_NAME = "emailConfig.properties";
 
     //logger instance
     private static final Logger logger = LoggerFactory.getLogger(EMailConfigUtil.class);
