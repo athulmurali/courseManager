@@ -15,6 +15,7 @@ public class User {
 	private String lastName;
 	private String role;
 	private Date dob;
+	private String reset_token;
 
 	public int getId() {
 		return id;
@@ -28,6 +29,15 @@ public class User {
 	public void setUsername(String username) {
 		this.username = username;
 	}
+
+	public String getReset_token() {
+		return reset_token;
+	}
+
+	public void setReset_token(String reset_token) {
+		this.reset_token = reset_token;
+	}
+
 	public String getPassword() {
 		return password;
 	}

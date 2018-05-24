@@ -12,4 +12,14 @@ public interface UserRepository
 	Iterable<User> findUserByCredentials(
 		@Param("username") String username,
 		@Param("password") String password);
+
+
+	@Query("SELECT u FROM User u WHERE u.email=:email")
+	Iterable<User> findUserByEmail(
+			@Param("email") String email);
+
+
+    @Query("SELECT u FROM User u WHERE u.reset_token=:reset_token")
+    Iterable<User> findUserByResetToken(
+            @Param("reset_token") String reset_token);
 }
