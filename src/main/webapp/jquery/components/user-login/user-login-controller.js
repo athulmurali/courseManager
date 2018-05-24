@@ -16,6 +16,8 @@ function login(){
 function main() {
     $('#login').click(login);
     $('#register').click(redirectToRegister);
+    $('#forgotPassword').click(redirectToForgotPassword);
+
 
 }
 //IIFE

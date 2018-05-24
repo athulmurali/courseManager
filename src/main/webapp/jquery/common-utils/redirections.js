@@ -9,3 +9,12 @@ function redirectToRegister(){
 function redirectToLogin(){
     window.location.href="/jquery/components/user-login/user-login.html";
 }
+
+
+function redirectToForgotPassword(){
+    window.location.href="/jquery/components/user-forgot-password/user-forgot-password.html";
+}
+
+function redirectToresetPassword(){
+    window.location.href="/jquery/components/user-login/user-login.html";
+}
