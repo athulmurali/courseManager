@@ -13,7 +13,7 @@ body {
     animation: move 10s ease infinite;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
-    background: linear-gradient(45deg, #49d49d 10%, #a2c7e5 90%);
+    background: linear-gradient(45deg, #49d49d 10%,  #a2c7e5 90%);
     height: 100vh;
 }
 
@@ -79,11 +79,11 @@ body {
     outline: 0;
     border: 0;
     color: white;
-    background: #aba194;
+    background: green;
     transition: 0.3s;
 }
 .btn:hover {
-    background: #a09486;
+    background:darkolivegreen;
 }
 
 @-webkit-keyframes NO {

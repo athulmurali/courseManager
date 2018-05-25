@@ -17,6 +17,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script src="../../common-utils/redirections.js"></script>
+    <script src="../../common-utils/validationUtils.js"></script>
+
     <script src="../../services/user.service.client.js"></script>
     <script src="user-register-controller.js"></script>
 
@@ -88,13 +90,6 @@
             </div>
 
 
-        <div class="form_group">
-
-            <select id="role"  class="form__input">
-                    <option value="student" selected >student</option>
-                    <option value="faculty">faculty</option>
-                </select>
-        </div>
 
 
 
@@ -111,6 +106,15 @@
 
             <input id="dob" type="date" style="border-radius: 5px">
         </div>
+
+        <div class="form_group">
+
+            <select id="role"  class="form__input">
+                <option value="student" selected >student</option>
+                <option value="faculty">faculty</option>
+            </select>
+        </div>
+
 
         <button class="btn" type="button" id="register">Register</button>
     </form>

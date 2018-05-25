@@ -22,4 +22,6 @@ public interface UserRepository
     @Query("SELECT u FROM User u WHERE u.reset_token=:reset_token")
     Iterable<User> findUserByResetToken(
             @Param("reset_token") String reset_token);
+
+
 }

@@ -9,8 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -54,18 +54,25 @@ public class UserService {
     }
 
     @PostMapping("/api/login")
-    public ResponseEntity<Object> login(@RequestBody User user) {
-        System.out.println("\n\n\n\n\n " + user.getUsername() + "  " + user.getPassword());
-        System.out.println(repository.findUserByCredentials(user.getUsername(), user.getPassword()));
-        if (!((List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword())).isEmpty()) {
-            System.out.println("User found!");
-            // send token
-            return ResponseEntity.status(HttpStatus.OK).build();
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+    public User login(@RequestBody User user, HttpServletResponse response) {
 
+        User tempUser = null;
+        System.out.println(repository.findUserByCredentials(user.getUsername(), user.getPassword()));
+
+        List<User> userlist = ((List<User>) repository.findUserByCredentials(user.getUsername(), user.getPassword()));
+        if (!userlist.isEmpty())
+        {
+            System.out.println("User found!");
+            tempUser = userlist.get(0);
+            System.out.println("\n\n\n\n\n " + tempUser.getUsername() + "  " + tempUser.getPassword());
+            // send token
+            return tempUser;
+        } else {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         }
+        return tempUser;
     }
+
 
     @GetMapping("/api/user")
     public List<User> findAllUsers() {
@@ -79,23 +86,26 @@ public class UserService {
 
 
         if (data.isPresent()) {
+            System.out.println(newUser);
             User user = data.get();
             user.setUsername(newUser.getUsername());
             user.setFirstName(newUser.getFirstName());
             user.setLastName(newUser.getLastName());
             user.setPassword(newUser.getPassword());
             user.setRole(newUser.getRole());
+            user.setPhone(newUser.getPhone());
+            user.setDob(newUser.getDob());
 
-            System.out.println("firstName..." + user.getFirstName());
-            System.out.println("lastName..." + user.getLastName());
-            System.out.println("role..." + user.getRole());
+            System.out.println("firstName       :" + user.getFirstName());
+            System.out.println("lastName        :" + user.getLastName());
+            System.out.println("role            :" + user.getRole());
 
-            repository.save(user);
+             repository.save(user);
 
-
-            System.out.println("put complete........." + userId);
             return user;
+
         }
+        System.out.println("returning Nullll");
         return null;
     }
 

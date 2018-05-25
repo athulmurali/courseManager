@@ -10,6 +10,7 @@
           crossorigin="anonymous"></script>
 
     <script src="../../common-utils/redirections.js"></script>
+    <script src="../../common-utils/validationUtils.js"></script>
 
     <script src="../../services/user.service.client.js"></script>
   <script src="profile.controller.client.js"></script>
@@ -47,9 +48,10 @@
         <label for="email" class="col-sm-2 col-form-label">Email</label>
         <div class="col-sm-10">
           <input type="text"  class="form-control" id="email" placeholder="email@example.com">
-            <small id="emailHelp" class="text-muted danger" style="display: none">
-               This emailid is already registered with another account!
-            </small>
+            <!--<small id="emailHelp" class="text-muted danger" style="display: none">-->
+                <!--This emailid is already registered with another account!-->
+            <!--</small>-->
+            <span  id="emailAvailable"></span>
         </div>
 
       </div>
@@ -57,7 +59,12 @@
         <label for="password" class="col-sm-2 col-form-label">Password</label>
         <div class="col-sm-10">
           <input type="password" class="form-control" id="password" placeholder="Password">
+            <small id="passwordHelp" class="text-muted" style="display:none;">
+                Must be 8-20 characters long.
+            </small>
         </div>
+
+
       </div>
       <div class="form-group row">
         <label for="firstName" class="col-sm-2 col-form-label">
@@ -97,18 +104,33 @@
         </div>
 
         <div class="form-group row">
+
             <label for="dob"
                    class="col-sm-2
                    col-form-label">
             Date of Birth
             </label>
-
             <div class="col-sm-10">
                 <input id="dob"
                        class="form-control"
                        type="date" required>
             </div>
+
         </div>
+
+
+      <div class="form-group row">
+
+              <label for="role"
+                     class="col-sm-2 col-form-label">
+                  Role</label>
+              <div class="col-sm-10">
+                  <select id="role"  class="form-control">
+                      <option value="student" selected >student</option>
+                      <option value="faculty">faculty</option>
+                  </select>
+              </div>
+          </div>
 
 
       <div class="row justify-content-center">

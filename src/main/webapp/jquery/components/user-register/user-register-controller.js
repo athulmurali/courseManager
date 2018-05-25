@@ -1,8 +1,3 @@
-const button = document.querySelector('.btn')
-const form   = document.querySelector('.form')
-
-
-
 const formValidated = true;
 var emailValidated = false;
 
@@ -34,7 +29,7 @@ function ifFormValid() {
 
 function isPasswordLengthValid()
 {
-    if ($('#password').val().length < 9 ||  $('#password').val().length >20)
+    if ($('#password').val().length < 8 ||  $('#password').val().length >20)
     {
         $('#passwordHelp').css("display", "block");
         return false;
@@ -87,11 +82,6 @@ function validatePhoneNumber(){
 
 function validateDOB(){
     console.log( new Date($('#dob').val()))
-}
-
-function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
 }
 
 
@@ -178,30 +168,33 @@ function getUserDetailsFromForm() {
 
 
 function checkIfEmailNotTaken(email) {
-    // return success if not taken (send request to server)
-    // $.ajax({
-    //     url: "/isEmailTaken",
-    //     data: {email: email},
-    //     type: "GET",
-    //
-    //     success: function (response) {
-    //         console.log("email -available");
-    //         emailValidated = true;
-    //         $("#emailAvailable").text("");
-    //         $("#emailAvailable").prepend('<img id="theImg" src="../templates/img/circleCheck.png" />');
-    //     },
-    //     error: function (xhr, status, error) {
-    //         console.log("in error of email");
-    //         $("#emailAvailable").text("email Taken");
-    //         $("#emailAvailable").css("color", "red");
-    //         emailValidated = false;
-    //     }
-    //
-    // });
-    $("#emailAvailable").text("valid");
-    $("#emailAvailable").css("color", "green");
-    return true
 
+    const userService = new UserServiceClient();
+    userService.isEmailAvailable(email).then(function(response) {
+        console.log("Inside validation utils ; isEmailAvailable");
+        console.log(response);
+
+        if(response.status == 200){
+
+
+            console.log("Email not taknen.......");
+            $("#emailAvailable").text("email Available");
+            $("#emailAvailable").css("color", "green");
+            emailValidated = true;
+            // $("#emailAvailable").prepend('<img id="theImg" src="../templates/img/circleCheck.png" />');
+            return true;
+
+        }
+
+        else{
+                $("#emailAvailable").text("email Taken");
+                $("#emailAvailable").css("color", "red");
+                 emailValidated = false;
+                 console.log("email already taken");
+                 return false;
+
+        }
+    });
 }
 
 

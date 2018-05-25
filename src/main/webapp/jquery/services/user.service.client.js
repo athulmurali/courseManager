@@ -7,6 +7,7 @@ function UserServiceClient() {
     this.login = login ;
     this.emailResetPasswordLink = emailResetPasswordLink;
     this.resetPassword = resetPassword;
+    this.isEmailAvailable = isEmailAvailable;
 
 
     this.url =
@@ -22,14 +23,27 @@ function UserServiceClient() {
     var self = this;
 
     function login(username, password) {
-        return fetch(self.loginURL, {
-            method: 'post',
-            body: JSON.stringify({username:username, password: password}),
+
+        var loginResponse = fetch(self.loginURL, {
+            method : 'post',
+            body: JSON.stringify({
+                username:username,
+                password:password
+            }),
             headers: {
                 'content-type': 'application/json'
             }
+        }).then(function(response) {
+            if(response.status==200){
+                return response.json();
+            }else {
+                return null;
+            }
+
         });
+        return loginResponse;
     }
+
 
     function updateUser(userId, user) {
         return fetch(self.url + '/' + userId, {
@@ -49,6 +63,13 @@ function UserServiceClient() {
     }
 
     function findUserById(userId) {
+        return fetch(self.url + '/' + userId)
+            .then(function(response){
+                return response.json();
+            });
+    }
+
+    function findUserByUsername(username) {
         return fetch(self.url + '/' + userId)
             .then(function(response){
                 return response.json();

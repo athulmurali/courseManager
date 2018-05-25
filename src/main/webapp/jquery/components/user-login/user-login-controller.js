@@ -7,7 +7,12 @@ function login(){
         userService.login(userName,password).then(function (response)
         {
             console.log(response)
-            if (response.status == 200) redirectToProfile();
+            if (response!=null)
+            {
+                console.log("success",response.id);
+                localStorage.setItem("userId",response.id)
+                redirectToProfile();
+            }
             else{
                 $('#invalidCredentialsUser').show();
             }
