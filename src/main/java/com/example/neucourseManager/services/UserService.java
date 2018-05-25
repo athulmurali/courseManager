@@ -80,14 +80,16 @@ public class UserService {
     }
 
     @PutMapping("/api/user/{userId}")
-    public User updateUser(@PathVariable("userId") int userId, @RequestBody User newUser) {
+    public User updateUser(@PathVariable("userId") int userId,
+                           @RequestBody User newUser,
+                           HttpServletResponse response) {
         Optional<User> data = repository.findById(userId);
         System.out.println(newUser);
-
+        User user = null;
 
         if (data.isPresent()) {
             System.out.println(newUser);
-            User user = data.get();
+            user = data.get();
             user.setUsername(newUser.getUsername());
             user.setFirstName(newUser.getFirstName());
             user.setLastName(newUser.getLastName());
@@ -106,7 +108,9 @@ public class UserService {
 
         }
         System.out.println("returning Nullll");
-        return null;
+        response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+
+        return user;
     }
 
     @GetMapping("/api/user/{userId}")

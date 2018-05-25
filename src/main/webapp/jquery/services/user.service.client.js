@@ -54,7 +54,7 @@ function UserServiceClient() {
             }
         })
         .then(function(response){
-            if(response.bodyUsed) {
+            if(response.status ==200) {
                 return response.json();
             } else {
                 return null;
@@ -69,12 +69,6 @@ function UserServiceClient() {
             });
     }
 
-    function findUserByUsername(username) {
-        return fetch(self.url + '/' + userId)
-            .then(function(response){
-                return response.json();
-            });
-    }
 
     function deleteUser(userId) {
         return fetch(self.url + '/' + userId, {
