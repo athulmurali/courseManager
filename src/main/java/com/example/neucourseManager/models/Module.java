@@ -11,6 +11,7 @@ public class Module {
     private int id;
     private String title;
     @ManyToOne
+    @JoinColumn(name="course_id")
     @JsonIgnore
     private Course course;
 }
