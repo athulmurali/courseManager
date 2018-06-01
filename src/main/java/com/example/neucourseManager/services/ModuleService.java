@@ -80,12 +80,13 @@ public class ModuleService {
 //        GET /api/course/{cid}/module
     @GetMapping("/api/course/{cid}/module")
     public ResponseEntity<?> findAllModulesForCourse(@PathVariable("cid") int cid) {
+        System.out.println("param value : " + cid);
 
-//        Iterable<Module> modules = moduleRepository.findModulesByCourseId(cid);
-//
-//        return  modules.iterator().hasNext() ? new ResponseEntity<>(modules, HttpStatus.OK) :
-//                  new ResponseEntity<>(modules, HttpStatus.NOT_FOUND) ;
-        return null;
+        Iterable<Module> modules = moduleRepository.findModulesByCourseId(cid);
+
+        return  modules.iterator().hasNext() ?
+                new ResponseEntity<>(modules, HttpStatus.OK) :
+                new ResponseEntity<>(modules, HttpStatus.NOT_FOUND) ;
 
         }
 

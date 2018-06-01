@@ -13,6 +13,6 @@ public interface ModuleRepository
         extends CrudRepository<Module, Integer>{
 
 
-    @Query("SELECT m FROM Module m WHERE m.course=:course_id")
-    Iterable<Module> findModulesByCourseId(@Param("course_id") int course_id);
+    @Query("SELECT m FROM Module m WHERE m.course.id=:cid")
+    Iterable<Module> findModulesByCourseId(@Param("cid") int cid);
 }
