@@ -70,15 +70,19 @@ public class LessonService {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND) ;
     }
 
+    //                deleteLesson
+//                deletes a lesson by id
+//                DELETE /api/lesson/{id}
     @DeleteMapping("/api/lesson/{id}")
     public ResponseEntity<?> deleteLesson(@PathVariable("id") int id) {
-        moduleRepository.deleteById(id);
+        lessonRepository.deleteById(id);
         return  new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 
-    //        findAllLessons : retrieves all the modules
-//        GET /api/module : findLessonById
+    //                findAllLessons
+//                retrieves all the lessons
+//                GET /api/lesson
     @GetMapping("/api/lesson")
     public ResponseEntity<?> findAllLessons(){
         List<Lesson>  moduleList =  (List<Lesson>)lessonRepository.findAll();
@@ -88,10 +92,11 @@ public class LessonService {
     }
 
 
-    //        retrieves a module by id
-//        GET /api/module/{id}
+    //                findLessonById
+//                retrieves a lesson by id
+//                GET /api/lesson/{id}
     @GetMapping("/api/lesson/{id}")
-    public ResponseEntity<?> findLessonbyId(@PathVariable("id") int id)
+    public ResponseEntity<?> findLessonById (@PathVariable("id") int id)
     {
         Optional<Lesson> module = lessonRepository.findById(id);
         return module.isPresent()?
