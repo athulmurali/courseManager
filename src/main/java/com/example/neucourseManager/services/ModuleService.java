@@ -62,17 +62,19 @@ public class ModuleService {
     }
 
     @DeleteMapping("/api/module/{id}")
-    public void deleteModule(@PathVariable("id") int id) {
-
+    public ResponseEntity<?> deleteModule(@PathVariable("id") int id) {
         moduleRepository.deleteById(id);
+        return  new ResponseEntity<>(null, HttpStatus.OK);
     }
 
 
 //        findAllModules : retrieves all the modules
 //        GET /api/module : findModuleById
     @GetMapping("/api/module")
-    public List<Module> findAllModules(){
-        return (List)moduleRepository.findAll();
+    public ResponseEntity<?> findAllModules(){
+        List<Module>  moduleList =  (List)moduleRepository.findAll();
+
+        return new ResponseEntity<>(moduleList,HttpStatus.OK);
 
     }
 
@@ -110,16 +112,20 @@ public class ModuleService {
 
 
 
+        // Note : course_id of a module is not modifiable
     @PutMapping("/api/module/{id}")
-    public Module updateModule(@PathVariable("id") int id,
+    public ResponseEntity<?> updateModule(@PathVariable("id") int id,
                                @RequestBody Module module) {
         Optional<Module> existingModule = moduleRepository.findById(id);
 
         if (existingModule.isPresent()){
-            return  moduleRepository.save(module);
+             Module editedModule = existingModule.get();
+            editedModule.setTitle(module.getTitle());
+             moduleRepository.save(editedModule);
+             return new ResponseEntity<>(editedModule,HttpStatus.OK);
         }
 
-        return null;
+        return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
 
     }
 
