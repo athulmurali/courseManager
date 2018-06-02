@@ -1,6 +1,7 @@
 package com.example.neucourseManager.services;
 import com.example.neucourseManager.models.Lesson;
 import com.example.neucourseManager.models.Module;
+import com.example.neucourseManager.repositories.CourseRepository;
 import com.example.neucourseManager.repositories.LessonRepository;
 import com.example.neucourseManager.repositories.ModuleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,19 +43,27 @@ import java.util.Optional;
 
 public class LessonService {
     @Autowired
+    CourseRepository courseRepository;
+
+    @Autowired
     ModuleRepository moduleRepository;
 
 
     @Autowired
     public LessonRepository lessonRepository ;
 
-    @PostMapping("/api/module/{lid}/module")
-    public ResponseEntity<?> createLesson(@PathVariable ("lid")  int lid,@RequestBody Lesson lesson) {
+    //   POST /api/course/{cid}/module/{mid}/lesson
+    @PostMapping("/api/course/{cid}/module/{mid}/lesson")
+    public ResponseEntity<?> createLesson(@PathVariable ("cid")  int cid,
+                                          @PathVariable ("mid")  int mid,
+                                          @RequestBody Lesson lesson) {
+        Module module = moduleRepository.findById(mid).get();
 
-        Optional<Module> module   = moduleRepository.findById(lid);
-        if ( module.isPresent())
+        if ( module != null &&  module.getCourse().getId() == cid)
         {
-            lesson.setModule(module.get());
+            System.out.println("Module belongs to the Course....");
+
+            lesson.setModule(module);
             return new ResponseEntity<>(lessonRepository.save(lesson), HttpStatus.OK) ;
         }
         else
