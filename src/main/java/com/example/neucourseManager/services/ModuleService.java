@@ -4,7 +4,6 @@ import com.example.neucourseManager.models.Course;
 import com.example.neucourseManager.models.Module;
 import com.example.neucourseManager.repositories.CourseRepository;
 import com.example.neucourseManager.repositories.ModuleRepository;
-import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,6 +46,7 @@ public class ModuleService {
     @Autowired
     public ModuleRepository moduleRepository ;
 
+    //        POST /api/course/{cid}/module
     @PostMapping("/api/course/{cid}/module")
     public ResponseEntity<?> createModule(@PathVariable ("cid")  int cid,@RequestBody Module module) {
 
@@ -61,6 +61,7 @@ public class ModuleService {
             return new ResponseEntity<>(null, HttpStatus.NOT_FOUND) ;
     }
 
+    //        DELETE /api/module/{id}
     @DeleteMapping("/api/module/{id}")
     public ResponseEntity<?> deleteModule(@PathVariable("id") int id) {
         moduleRepository.deleteById(id);
@@ -88,8 +89,6 @@ public class ModuleService {
         return module.isPresent()?
                 new ResponseEntity<>(module.get(),HttpStatus.OK):
                 new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
-
-
     }
 
 
@@ -106,7 +105,6 @@ public class ModuleService {
         return  modules.iterator().hasNext() ?
                 new ResponseEntity<>(modules, HttpStatus.OK) :
                 new ResponseEntity<>(modules, HttpStatus.NOT_FOUND) ;
-
         }
 
 
