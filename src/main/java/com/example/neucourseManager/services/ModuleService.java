@@ -1,13 +1,16 @@
 package com.example.neucourseManager.services;
 
+import com.example.neucourseManager.models.Course;
 import com.example.neucourseManager.models.Module;
 import com.example.neucourseManager.repositories.CourseRepository;
 import com.example.neucourseManager.repositories.ModuleRepository;
+import org.bouncycastle.math.raw.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +48,17 @@ public class ModuleService {
     public ModuleRepository moduleRepository ;
 
     @PostMapping("/api/course/{cid}/module")
-    public Module createModule(@RequestBody Module module) {
-        return  moduleRepository.save(module);
+    public ResponseEntity<?> createModule(@PathVariable ("cid")  int cid,@RequestBody Module module) {
+
+        Optional<Course> course   = courseRepository.findById(cid);
+        if ( course.isPresent())
+        {
+            module.setCourse(course.get());
+            module = moduleRepository.save(module);
+            return new ResponseEntity<>(moduleRepository.save(module), HttpStatus.OK) ;
+        }
+        else
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND) ;
     }
 
     @DeleteMapping("/api/module/{id}")
@@ -68,9 +80,14 @@ public class ModuleService {
 //        retrieves a module by id
 //        GET /api/module/{id}
     @GetMapping("/api/module/{id}")
-    public Optional<Module> findModulebyId(@PathVariable("id") int id)
+    public ResponseEntity<?> findModulebyId(@PathVariable("id") int id)
     {
-        return moduleRepository.findById(id);
+        Optional<Module> module = moduleRepository.findById(id);
+        return module.isPresent()?
+                new ResponseEntity<>(module.get(),HttpStatus.OK):
+                new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+
+
     }
 
 
