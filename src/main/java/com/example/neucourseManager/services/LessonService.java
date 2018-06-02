@@ -11,6 +11,33 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+
+
+//                createLesson
+//                creates a lesson for a module
+//                POST /api/course/{cid}/module/{mid}/lesson
+//
+//                deleteLesson
+//                deletes a lesson by id
+//                DELETE /api/lesson/{id}
+//
+//                findAllLessons
+//                retrieves all the lessons
+//                GET /api/lesson
+//
+//                findLessonById
+//                retrieves a lesson by id
+//                GET /api/lesson/{id}
+//
+//                findAllLessonssForModule
+//                retrieves all lessons for module
+//                GET /api/course/{cid}/module/{mid}/lesson
+//
+//                updateLesson
+//                updates a lesson by id
+//                PUT /api/lesson/{id}
+
+
 @RestController
 
 public class LessonService {
