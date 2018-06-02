@@ -14,5 +14,5 @@ public interface LessonRepository
 
 
     @Query("SELECT l FROM Lesson l WHERE l.module.id=:lid")
-    Iterable<Lesson> findLessonsByCourseId(@Param("lid") int lid);
+    Iterable<Lesson> findLessonsByModuleId(@Param("lid") int lid);
 }

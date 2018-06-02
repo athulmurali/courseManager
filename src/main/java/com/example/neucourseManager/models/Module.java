@@ -3,6 +3,7 @@ package com.example.neucourseManager.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Module {
@@ -14,6 +15,11 @@ public class Module {
     @JoinColumn(name="course_id")
     @JsonIgnore
     private Course course;
+
+
+
+    @OneToMany(mappedBy="module")
+    private List<Lesson> lessons;
 
     public int getId() {
         return id;
@@ -37,5 +43,13 @@ public class Module {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public List<Lesson> getLessons() {
+        return lessons;
+    }
+
+    public void setLessons(List<Lesson> lessons) {
+        this.lessons = lessons;
     }
 }
