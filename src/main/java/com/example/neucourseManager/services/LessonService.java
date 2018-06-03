@@ -30,7 +30,7 @@ import java.util.Optional;
 //                retrieves a lesson by id
 //                GET /api/lesson/{id}
 //
-//                findAllLessonssForModule
+//                findAllLessonsForModule
 //                retrieves all lessons for module
 //                GET /api/course/{cid}/module/{mid}/lesson
 //
@@ -108,19 +108,24 @@ public class LessonService {
 
 
 
-    //        findAllLessonsForModule
-//        retrieves all modules for [module
-//        GET /api/module/{lid}/module
-    @GetMapping("/api/module/{mid}/lesson")
-    public ResponseEntity<?> findAllLessonsForModule(@PathVariable("mid") int mid) {
-        System.out.println("param value : " + mid);
+    //                findAllLessonsForModule
+//                retrieves all lessons for module
+//                GET /api/course/{cid}/module/{mid}/lesson
+//
+    @GetMapping("/api/course/{cid}/module/{mid}/lesson")
+    public ResponseEntity<?> findAllLessonsForModule(@PathVariable("cid") int cid,
+                                                    @PathVariable("mid") int mid) {
 
-        Iterable<Lesson> modules = lessonRepository.findLessonsByModuleId(mid);
+        Module module = moduleRepository.findById(mid).get();
 
-        return  modules.iterator().hasNext() ?
-                new ResponseEntity<>(modules, HttpStatus.OK) :
-                new ResponseEntity<>(modules, HttpStatus.NOT_FOUND) ;
+        if ( module != null &&  module.getCourse().getId() == cid)
+        {
+            System.out.println("Module belongs to the Course....");
 
+            return new ResponseEntity<>(lessonRepository.findLessonsByModuleId(mid), HttpStatus.OK) ;
+        }
+        else
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND) ;
     }
 
 
@@ -129,12 +134,12 @@ public class LessonService {
     // Note : module_id of a module is not modifiable
     @PutMapping("/api/lesson/{id}")
     public ResponseEntity<?> updateLesson(@PathVariable("id") int id,
-                                          @RequestBody Lesson module) {
+                                          @RequestBody Lesson lesson) {
         Optional<Lesson> existingLesson = lessonRepository.findById(id);
 
         if (existingLesson.isPresent()){
             Lesson editedLesson = existingLesson.get();
-            editedLesson.setTitle(module.getTitle());
+            editedLesson.setTitle(lesson.getTitle());
             lessonRepository.save(editedLesson);
             return new ResponseEntity<>(editedLesson,HttpStatus.OK);
         }
@@ -142,8 +147,5 @@ public class LessonService {
         return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
 
     }
-
-
-
 
 }
