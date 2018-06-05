@@ -3,6 +3,7 @@ package com.example.neucourseManager.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -10,6 +11,8 @@ public class Module {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
+    @NotNull
+    @Column(nullable = false)
     private String title;
     @ManyToOne
     @JoinColumn(name="course_id")

@@ -3,12 +3,15 @@ package com.example.neucourseManager.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Lesson {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int id;
+    @NotNull
+    @Column(nullable = false)
     private String title;
     @ManyToOne
     @JoinColumn(name="module_id")
