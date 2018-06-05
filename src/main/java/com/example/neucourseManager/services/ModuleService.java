@@ -37,6 +37,8 @@ import java.util.Optional;
 //        PUT /api/module/{id}
 
 @RestController
+@CrossOrigin(origins = "*", maxAge = 3600)
+
 
 public class ModuleService {
     @Autowired
