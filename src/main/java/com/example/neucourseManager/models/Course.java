@@ -19,6 +19,14 @@ public class Course { @Id
     @OneToMany(mappedBy="course")
     private List<Module> modules;
 
+    public Date getCreated() {
+        return created;
+    }
+
+    public Date getModified() {
+        return modified;
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date created;
