@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Lesson {
@@ -17,6 +18,18 @@ public class Lesson {
     @JoinColumn(name="module_id")
     @JsonIgnore
     private Module module;
+
+    public List<Topic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<Topic> topics) {
+        this.topics = topics;
+    }
+
+    @OneToMany(mappedBy = "lesson",orphanRemoval = true)
+    private List<Topic> topics;
+
 
     public int getId() {
         return id;

@@ -85,9 +85,10 @@ public class TopicService {
 //                GET /api/topic
     @GetMapping("/api/topic")
     public ResponseEntity<?> findAllTopics(){
-        List<Topic>  lessonList =  (List<Topic>)topicRepository.findAll();
+        System.out.println("findina ..............");
+        List<Topic>  topicList =  (List<Topic>)topicRepository.findAll();
 
-        return new ResponseEntity<>(lessonList,HttpStatus.OK);
+        return new ResponseEntity<>(topicList,HttpStatus.OK);
 
     }
 

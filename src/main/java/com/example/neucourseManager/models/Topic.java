@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.awt.event.WindowFocusListener;
+import java.util.List;
 
 @Entity
 public class Topic {
@@ -17,6 +19,13 @@ public class Topic {
     @JoinColumn(name="lesson_id")
     @JsonIgnore
     private Lesson lesson;
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy="topic", orphanRemoval = true)
+    private List<Widget> widgets;
+
+
 
     public int getId() {
         return id;
@@ -41,4 +50,14 @@ public class Topic {
     public void setLesson(Lesson lesson) {
         this.lesson = lesson;
     }
+
+
+    public void setWidgets(List<Lesson> lessons) {
+        this.widgets = widgets;
+    }
+
+    public List<Widget> getWidgets() {
+        return widgets;
+    }
+
 }

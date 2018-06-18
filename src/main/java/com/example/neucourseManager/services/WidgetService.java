@@ -3,43 +3,18 @@ package com.example.neucourseManager.services;
 import com.example.neucourseManager.models.Topic;
 import com.example.neucourseManager.models.Topic;
 import com.example.neucourseManager.models.Widget;
-import com.example.neucourseManager.repositories.CourseRepository;
-import com.example.neucourseManager.repositories.TopicRepository;
 import com.example.neucourseManager.repositories.TopicRepository;
 import com.example.neucourseManager.repositories.WidgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
 
-//                createWidget
-//                creates a widget for a topic
-//                POST /api/course/{cid}/lesson/{mid}/topic/{lid}/widget
-//
-//                deleteWidget
-//                deletes a widget by id
-//                DELETE /api/widget/{id}
-//
-//                findAllWidgets
-//                retrieves all the widgets
-//                GET /api/widget
-//
-//                findWidgetById
-//                retrieves a widget by id
-//                GET /api/widget/{id}
-//
-//                findAllWidgetsForTopic
-//                retrieves all widgets for topic
-//                GET /api/course/{cid}/lesson/{mid}/topic/{lid}/widget
-//
-//                updateWidget
-//                updates a widget by id
-//                PUT/api/widget/{id}
 
 
 @RestController
@@ -47,103 +22,120 @@ import java.util.Optional;
 
 public class WidgetService {
     @Autowired
-    CourseRepository courseRepository;
+    WidgetRepository widgetRepository;
 
     @Autowired
     TopicRepository topicRepository;
 
-
-    @Autowired
-    public WidgetRepository widgetRepository ;
-
-//    @PostMapping("/api/course/{cid}/lesson/{mid}/topic/{lid}/widget")
-//    public ResponseEntity<?> createWidget(@PathVariable ("cid")   int cid,
-//                                          @PathVariable ("mid")  int mid,
-//                                         @PathVariable ("lid")   int lid,
-//
-//                                         @RequestBody Widget widget) {
-//        Topic topic = topicRepository.findById(lid).get();
-//
-//        if ( topic != null &&  topic.getLesson().getId() == mid)
-//        {
-//            System.out.println("Widget belongs to the Topic....");
-//
-//            widget.setTopic(topic);
-//            return new ResponseEntity<>(widgetRepository.save(widget), HttpStatus.OK) ;
-//        }
-//        else
-//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND) ;
-//    }
-
-//
-//    @DeleteMapping("/api/widget/{id}")
-//    public ResponseEntity<?> deleteWidget(@PathVariable("id") int id) {
-//        widgetRepository.deleteById(id);
-//        return  new ResponseEntity<>(null, HttpStatus.OK);
-//    }
-
-
-    //                findAllWidgets
-//                retrieves all the widgets
-//                GET /api/widget
     @GetMapping("/api/widget")
-    public ResponseEntity<?> findAllWidgets(){
-        List<Widget>  widgetList =  (List<Widget>)widgetRepository.findAll();
+    public List<Widget> findAllWidgets(){
 
-        return new ResponseEntity<>(widgetList,HttpStatus.OK);
+        return (List<Widget>) widgetRepository.findAll();
 
     }
 
-//
-////                findWidgetById
-////                retrieves a widget by id
-////                GET /api/widget/{id}
-//    @GetMapping("/api/widget/{id}")
-//    public ResponseEntity<?> findWidgetById (@PathVariable("id") int id)
-//    {
-//        Optional<Widget> widget = widgetRepository.findById(id);
-//        return widget.isPresent()?
-//                new ResponseEntity<>(widget.get(),HttpStatus.OK):
-//                new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
-//    }
+    @PostMapping("/api/widget/save")
+    public void saveAllWidgets(@RequestBody List<Widget> widgets)
+    {
+        widgetRepository.deleteAll();
+        for(Widget widget: widgets)
+        {
+            widgetRepository .save(widget);
+        }
+    }
+
+    @PostMapping("/api/widget/save/{topicId}")
+    public List<Widget> saveAllWidgets(@RequestBody List<Widget> widgets,
+                                       @PathVariable("topicId") int topicId) {
+        Optional<Topic> topicData = topicRepository.findById(topicId);
+        List<Widget> response = new ArrayList<Widget>();
+        if (topicData.isPresent()) {
+            List<Widget> widList = topicData.get().getWidgets();
+            widgetRepository.deleteAll(widList);
+            for (Widget w : widgets) {
+                w.setTopic(topicData.get());
+                response.add(widgetRepository.save(w));
+            }
+            return response;
+        } else {
+            return new ArrayList<Widget>();
+        }
+    }
+
+    @GetMapping("/api/widget/{widgetId}")
+    public Widget findWidgetById(@PathVariable("widgetId") int widgetId) {
+        Optional<Widget> data = widgetRepository.findById(widgetId);
+        if(data.isPresent()) {
+            return data.get();
+        }
+        return null;
+    }
+
+    @GetMapping("/api/topic/{topicId}/widget")
+    public List<Widget> findAllWidgetsForTopic(
+            @PathVariable("topicId") int topicId) {
+        Optional<Topic> data = topicRepository.findById(topicId);
+        if(data.isPresent()) {
+            Topic topic = data.get();
+            return widgetRepository.findAllWidgetsByTopicSorted(topic);
+        }
+        return null;
+    }
+
+    @PostMapping("/api/topic/{topicId}/widget")
+    public Widget createWidget(
+            @PathVariable("topicId") int topicId,
+            @RequestBody Widget newWidget) {
+        Optional<Topic> data = topicRepository.findById(topicId);
+
+        if(data.isPresent()) {
+            Topic topic = data.get();
+            newWidget.setTopic(topic);
+            return widgetRepository.save(newWidget);
+
+        }
+        return null;
+    }
 
 
-//
-//    @GetMapping("/api/course/{cid}/lesson/{mid}/topic/{lid}/widget")
-//    public ResponseEntity<?> findAllWidgetsForTopic(@PathVariable("cid") int cid,
-//                                                    @PathVariable("mid") int mid,
-//                                                    @PathVariable("tid") int tid) {
-//
-//        Topic topic = topicRepository.findById(tid).get();
-//
-//        if ( topic != null &&  topic.getLesson().getId() == mid)
-//        {
-//            System.out.println("Topic belongs to the Course....");
-//
-//            return new ResponseEntity<>(widgetRepository.findWidgetsByTopicId(tid), HttpStatus.OK) ;
-//        }
-//        else
-//            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND) ;
-//    }
-//
-//
+    @PostMapping("/api/topic/{topicId}/widgets")
+    public List<Widget> createWidgets(
+            @PathVariable("topicId") int topicId,
+            @RequestBody List<Widget> newWidgets) {
+        widgetRepository.deleteWidgetsByTopicId(topicId);
+        List<Widget> output = new ArrayList<Widget>();
+        for(Widget w : newWidgets) {
+            output.add(createWidget(topicId,w));
+        }
+        return output;
+    }
 
-//
-//    // Note : widget_id of a widget must not modifiable
-//    @PutMapping("/api/widget/{id}")
-//    public ResponseEntity<?> updateWidget(@PathVariable("id") int id,
-//                                          @RequestBody Widget widget) {
-//        Optional<Widget> existingWidget = widgetRepository.findById(id);
-//
-//        if (existingWidget.isPresent()){
-//            Widget editedWidget = existingWidget.get();
-//            editedWidget.setTitle(widget.getTitle());
-//            widgetRepository.save(editedWidget);
-//            return new ResponseEntity<>(editedWidget,HttpStatus.OK);
-//        }
-//
-//        return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
-//
-//    }
+
+    @PutMapping("/api/widget/{widgetId}")
+    public Widget updateWidget(
+            @PathVariable("widgetId") int widgetId,
+            @RequestBody Widget newWidget) {
+        Optional<Widget> data = widgetRepository.findById(widgetId);
+        if(data.isPresent()) {
+            Widget widget = data.get();
+            widget.setName(newWidget.getName());
+            widget.setWidgetOrder(newWidget.getWidgetOrder());
+            widget.setText(newWidget.getText());
+            widget.setSize(newWidget.getSize());
+            widget.setListType(newWidget.getListType());
+            widget.setWidgetType(newWidget.getWidgetType());
+            widget.setLinkName(newWidget.getLinkName());
+            widgetRepository.save(widget);
+            return widget;
+        }
+        return null;
+    }
+
+    @DeleteMapping("/api/widget/{widgetId}")
+    public void deleteWidget(@PathVariable("widgetId") int widgetId)
+    {
+        widgetRepository.deleteById(widgetId);
+    }
+
 
 }

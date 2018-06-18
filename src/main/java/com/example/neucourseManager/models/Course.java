@@ -16,7 +16,7 @@ public class Course { @Id
     @NotNull
     @Column(nullable = false)
     private String title;
-    @OneToMany(mappedBy="course")
+    @OneToMany(mappedBy="course",orphanRemoval = true)
     private List<Module> modules;
 
     public Date getCreated() {

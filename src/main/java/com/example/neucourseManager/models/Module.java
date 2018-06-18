@@ -21,7 +21,7 @@ public class Module {
 
 
 
-    @OneToMany(mappedBy="module")
+    @OneToMany(mappedBy="module",orphanRemoval = true)
     private List<Lesson> lessons;
 
     public int getId() {
