@@ -6,6 +6,10 @@ https://neu-course-manager.herokuapp.com/jquery/components/user-login/user-login
 <h3>Deployed Admin's screen link </h3>
 https://neu-course-manager.herokuapp.com/jquery/components/user-admin/user-admin.template.client.html
 
+<h3>Deployed React app </h3>
+https://react-course-manager.herokuapp.com/
+
+
 
 
 Note : 
