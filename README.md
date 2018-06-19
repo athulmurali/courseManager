@@ -16,12 +16,12 @@ https://react-course-manager.herokuapp.com/
 
 React app 
 
-Assignment 3: https://github.com/athulmurali/react-course-manager/releases/tag/3.1
+Assignment 3: https://github.com/athulmurali/react-course-manager/releases/tag/3.2
 
 
 Java Springboot server : 
 
-https://github.com/athulmurali/courseManager/releases/tag/3.1
+https://github.com/athulmurali/courseManager/releases/tag/3.2
 
 
 <hr>
