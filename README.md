@@ -10,7 +10,21 @@ https://neu-course-manager.herokuapp.com/jquery/components/user-admin/user-admin
 https://react-course-manager.herokuapp.com/
 
 
+<hr>
 
+####### Releases
+
+React app 
+
+Assignment 3: https://github.com/athulmurali/react-course-manager/releases/tag/3.1
+
+
+Java Springboot server : 
+
+https://github.com/athulmurali/courseManager/releases/tag/3.1
+
+
+<hr>
 
 Note : 
 
