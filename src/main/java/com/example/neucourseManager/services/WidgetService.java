@@ -45,8 +45,12 @@ public class WidgetService {
     }
 
     @PostMapping("/api/widget/save/{topicId}")
+
     public List<Widget> saveAllWidgets(@RequestBody List<Widget> widgets,
                                        @PathVariable("topicId") int topicId) {
+
+
+
         Optional<Topic> topicData = topicRepository.findById(topicId);
         List<Widget> response = new ArrayList<Widget>();
         if (topicData.isPresent()) {
@@ -54,6 +58,12 @@ public class WidgetService {
             widgetRepository.deleteAll(widList);
             for (Widget w : widgets) {
                 w.setTopic(topicData.get());
+
+                System.out.println("\n" + "topicId : " + topicId);
+                System.out.println("\n" + " Widget : " + w);
+
+
+
                 response.add(widgetRepository.save(w));
             }
             return response;
