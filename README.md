@@ -12,7 +12,7 @@ https://react-course-manager.herokuapp.com/
 
 <hr>
 
-####### Releases
+##### Releases
 
 React app 
 
