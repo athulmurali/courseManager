@@ -1,7 +1,6 @@
 package com.example.neucourseManager.models;
 
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
