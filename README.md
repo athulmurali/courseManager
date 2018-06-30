@@ -6,7 +6,25 @@ https://neu-course-manager.herokuapp.com/jquery/components/user-login/user-login
 <h3>Deployed Admin's screen link </h3>
 https://neu-course-manager.herokuapp.com/jquery/components/user-admin/user-admin.template.client.html
 
+<h3>Deployed React app </h3>
+https://react-course-manager.herokuapp.com/
 
+
+<hr>
+
+##### Releases
+
+React app 
+
+Assignment 3: https://github.com/athulmurali/react-course-manager/releases/tag/3.2
+
+
+Java Springboot server : 
+
+https://github.com/athulmurali/courseManager/releases/tag/3.2
+
+
+<hr>
 
 Note : 
 
