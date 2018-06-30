@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PER_CLASS_FILL_IN_THE_BLANK_QUESTION")
+@Table(name = "FILL_IN_THE_BLANK_QUESTION")
 public class FillInTheBlanksExamQuestion
         extends BaseQuestion {
     @Column(name = "VARIABLES", nullable = false)
