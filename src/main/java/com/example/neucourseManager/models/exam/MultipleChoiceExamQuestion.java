@@ -1,4 +1,4 @@
-package com.example.neucourseManager.models;
+package com.example.neucourseManager.models.exam;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
