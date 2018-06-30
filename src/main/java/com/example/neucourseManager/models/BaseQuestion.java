@@ -8,7 +8,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PER_CLASS_BASE_QUESTION")
+@Table(name = "BASE_QUESTION")
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class BaseQuestion {
     @Id
