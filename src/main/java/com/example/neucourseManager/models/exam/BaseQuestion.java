@@ -1,16 +1,12 @@
 package com.example.neucourseManager.models.exam;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "BASE_QUESTION")
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public class BaseQuestion {
+public class BaseQuestion extends Exam {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
@@ -18,6 +14,9 @@ public class BaseQuestion {
     private String title;
     private String description;
     private String instructions;
+
+
+
     public int getId() {
         return id;
     }
@@ -48,4 +47,7 @@ public class BaseQuestion {
     public void setInstructions(String instructions) {
         this.instructions = instructions;
     }
+
+
+
 }

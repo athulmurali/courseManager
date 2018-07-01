@@ -11,6 +11,7 @@ import java.util.List;
 public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column
     private int id;
     @Column(nullable = false)
     private String title;

@@ -2,11 +2,9 @@ package com.example.neucourseManager.models.exam;
 
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
-@Table(name="ESSAY_QUESTION")
-public class EssayExamQuestion extends BaseQuestion{
+public class EssayExamQuestion extends Question{
 
     private String essayAnswer;
 

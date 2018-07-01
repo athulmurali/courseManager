@@ -4,16 +4,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+
 @Entity
-@Table(name = "TRUE_OR_FALSE_QUESTION")
-public class TrueOrFalseExamQuestion
-        extends BaseQuestion {
-    @Column(name = "IS_TRUE", nullable = false)
-    private Boolean isTrue;
-    public Boolean getIsTrue() {
-        return isTrue;
+public class TrueOrFalseExamQuestion extends Question {
+    private boolean answer;
+
+    public boolean isAnswer() {
+        return answer;
     }
-    public void setIsTrue(Boolean isTrue) {
-        this.isTrue = isTrue;
+
+    public void setAnswer(boolean answer) {
+        this.answer = answer;
     }
+
+
+
 }

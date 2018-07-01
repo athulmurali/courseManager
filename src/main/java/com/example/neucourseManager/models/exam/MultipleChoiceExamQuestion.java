@@ -2,13 +2,11 @@ package com.example.neucourseManager.models.exam;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="MCQ_QUESTION")
-public class MultipleChoiceExamQuestion extends  BaseQuestion{
+public class MultipleChoiceExamQuestion extends  Question{
 
     @ElementCollection
     private List<String> options = new ArrayList<>();

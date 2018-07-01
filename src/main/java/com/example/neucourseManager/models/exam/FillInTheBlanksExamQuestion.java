@@ -1,13 +1,12 @@
 package com.example.neucourseManager.models.exam;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "FILL_IN_THE_BLANK_QUESTION")
+
 public class FillInTheBlanksExamQuestion
-        extends BaseQuestion {
+
+        extends Question {
     @Column(name = "VARIABLES", nullable = false)
     private String variables;
     public String getVariables() {
