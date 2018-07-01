@@ -1,6 +1,7 @@
 package com.example.neucourseManager.models.exam;
 
 
+import com.example.neucourseManager.models.Topic;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -11,11 +12,21 @@ public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    @Column(nullable = false)
     private String title;
     private String description;
+
+
+
+    @ManyToOne
+    @JoinColumn(name="topic_id")
+    @JsonIgnore
+    private Topic topic;
+
     @OneToMany(mappedBy="exam", orphanRemoval = true)
     @JsonIgnore
     private List<Question> questions;
+
 
 
     public int getId() {
@@ -44,5 +55,13 @@ public class Exam {
     }
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
     }
 }
