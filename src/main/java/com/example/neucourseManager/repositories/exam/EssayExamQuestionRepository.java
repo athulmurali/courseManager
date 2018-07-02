@@ -1,7 +1,5 @@
 package com.example.neucourseManager.repositories.exam;
 
-
-import com.example.neucourseManager.models.exam.BaseQuestion;
 import com.example.neucourseManager.models.exam.EssayExamQuestion;
 import org.springframework.data.repository.CrudRepository;
 

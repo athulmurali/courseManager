@@ -1,5 +1,7 @@
 package com.example.neucourseManager.models;
 
+import com.example.neucourseManager.models.assignment.Assignment;
+import com.example.neucourseManager.models.exam.Exam;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -27,6 +29,20 @@ public class Topic {
 
 
 
+    @JsonIgnore
+    @OneToMany(mappedBy="topic", orphanRemoval = true)
+    private List<Assignment> assignments;
+
+
+
+
+
+    @JsonIgnore
+    @OneToMany(mappedBy="topic", orphanRemoval = true)
+    private List<Exam> exams;
+
+
+
     public int getId() {
         return id;
     }
@@ -51,13 +67,37 @@ public class Topic {
         this.lesson = lesson;
     }
 
-
-    public void setWidgets(List<Lesson> lessons) {
+    public void setWidgets   ( List<Lesson> lessons ) {
         this.widgets = widgets;
     }
 
     public List<Widget> getWidgets() {
         return widgets;
     }
+
+    public List<Assignment> getAssignments()
+    {
+        return assignments;
+    }
+
+    public List<Exam> getExams()
+    {
+        return exams;
+    }
+
+    public void setAssignments (List<Assignment> assignments )
+    {
+        this.assignments = assignments;
+    }
+
+
+
+
+
+    public void setExams (List<Exam> exams )
+    {
+        this.exams = exams;
+    }
+
 
 }
