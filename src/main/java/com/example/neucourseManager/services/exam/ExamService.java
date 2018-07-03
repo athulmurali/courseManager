@@ -102,7 +102,7 @@ public class ExamService {
             return new ResponseEntity(emptyList,HttpStatus.OK);
         }
         catch(Exception e){
-            return new ResponseEntity<>(HttpStatus.GONE);
+            return new ResponseEntity(emptyList, HttpStatus.GONE);
 
         }
     }
