@@ -108,7 +108,7 @@ public class AssignmentService {
             return new ResponseEntity(HttpStatus.OK);
         }
         catch(Exception e){
-            return new ResponseEntity<>(HttpStatus.GONE);
+            return new ResponseEntity(HttpStatus.GONE);
 
         }
     }

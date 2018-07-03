@@ -96,9 +96,10 @@ public class ExamService {
     @DeleteMapping("/api/exam/{eid}")
     public ResponseEntity<?>  deleteExamById(@PathVariable("eid") int eid) {
         System.out.println("Deleting  exam  by examId  :  " + eid);
+        List emptyList = new ArrayList();
         try{
             examRepository.deleteById(eid);
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity(emptyList,HttpStatus.OK);
         }
         catch(Exception e){
             return new ResponseEntity<>(HttpStatus.GONE);
