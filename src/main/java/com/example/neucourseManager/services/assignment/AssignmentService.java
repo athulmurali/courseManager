@@ -103,12 +103,13 @@ public class AssignmentService {
     @DeleteMapping("/api/assignment/{aid}")
     public ResponseEntity<?> deleteAssignmentById(@PathVariable("aid") int aid) {
         System.out.println("Deleting  assignment  by assignmentId  :  " + aid);
+        List emptyList = new ArrayList();
         try{
             assignmentRepository.deleteById(aid);
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity(emptyList, HttpStatus.OK);
         }
         catch(Exception e){
-            return new ResponseEntity(HttpStatus.GONE);
+            return new ResponseEntity(emptyList, HttpStatus.GONE);
 
         }
     }
