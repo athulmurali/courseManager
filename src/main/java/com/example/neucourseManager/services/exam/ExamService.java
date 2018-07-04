@@ -26,16 +26,27 @@ public class ExamService {
 
 //
 //    GET
-///api/exam
+///     api/exam
 //    Returns an arrary of all exams
 
     @GetMapping("/api/exam")
-    public List<Exam> findAllExams() {
+    public ResponseEntity<?> findAllExams() {
         System.out.println("Getting all exams   :  ");
 
         List<Exam> examsList = new ArrayList<>();
-        examRepository.findAll();
-        return examsList;
+        try{
+            return new ResponseEntity( examRepository.findAll(), HttpStatus.OK);
+
+        }
+        catch (Exception e)
+        {
+            System.out.println("ExamService Exception :");
+            System.out.println(e);
+            return new ResponseEntity( examsList, HttpStatus.FORBIDDEN);
+
+
+        }
+
     }
 
 //    GET
