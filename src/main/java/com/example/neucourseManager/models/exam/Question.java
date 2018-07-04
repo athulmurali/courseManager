@@ -35,10 +35,10 @@ public class Question {
     public void setTitle(String title) {
         this.title = title;
     }
-    public String getDesciption() {
+    public String getDescription() {
         return description;
     }
-    public void setDesciption(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
     public int getPoints() {
