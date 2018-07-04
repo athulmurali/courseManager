@@ -17,7 +17,7 @@ import java.util.Optional;
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class TrueOrFalseExamQuestionService {
-    public static String MCQ = "MCQ";
+    public static final  String TRUEFALSE = "TF";
 
     @Autowired
     ExamRepository examRepository;
@@ -34,7 +34,7 @@ public class TrueOrFalseExamQuestionService {
         if(data.isPresent()) {
             Exam exam = data.get();
             trueOrFalseExamQuestion.setExam(exam);
-            trueOrFalseExamQuestion.setType(MCQ);
+            trueOrFalseExamQuestion.setType(TRUEFALSE);
             try
             {
                 return new ResponseEntity( trueOrFalseExamQuestionRepository.save(trueOrFalseExamQuestion),
