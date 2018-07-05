@@ -70,7 +70,7 @@ public class AssignmentService {
     }
 
 
-    //            POST
+//            POST
 ///api/topic/:tid/assignment
 //    Creates a new assignment for a given topic
     @PostMapping("/api/topic/{tid}/assignment")
@@ -80,12 +80,13 @@ public class AssignmentService {
         System.out.println(assignment);
 
 
-
         Optional<Topic> topic =  topicRepository.findById(tid);
+
         if (topic.isPresent())
         {
             assignment.setTopic(topic.get());
-            return new ResponseEntity(assignmentRepository.save(assignment), HttpStatus.OK);
+            Assignment saved = assignmentRepository.save(assignment);
+            return new ResponseEntity(saved, HttpStatus.OK);
 
         }
 
