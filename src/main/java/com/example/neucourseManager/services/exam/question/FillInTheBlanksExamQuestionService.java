@@ -35,9 +35,10 @@ public class FillInTheBlanksExamQuestionService {
             Exam exam = data.get();
             newFillInTheBlanksExamQuestion.setExam(exam);
             newFillInTheBlanksExamQuestion.setType(BLANKS);
+            FillInTheBlanksExamQuestion saved = (FillInTheBlanksExamQuestion)fillInTheBlankQuestionRepository.save(newFillInTheBlanksExamQuestion);
             try
             {
-                return new ResponseEntity(fillInTheBlankQuestionRepository.save(newFillInTheBlanksExamQuestion),
+                return new ResponseEntity(saved,
                         HttpStatus.OK);
             }
             catch (Exception e)
