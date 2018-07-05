@@ -35,7 +35,9 @@ public class MultipleChoiceExamQuestionService {
             newMultipleChoiceExamQuestion.setType(MCQ);
             try
             {
-                return new ResponseEntity(multipleChoiceExamQuestionRepository.save(newMultipleChoiceExamQuestion),
+                MultipleChoiceExamQuestion saved = multipleChoiceExamQuestionRepository.save(newMultipleChoiceExamQuestion);
+
+                return new ResponseEntity(saved,
                         HttpStatus.OK);
             }
             catch (Exception e)
