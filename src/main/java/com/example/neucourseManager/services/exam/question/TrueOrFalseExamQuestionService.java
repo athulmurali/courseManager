@@ -35,9 +35,10 @@ public class TrueOrFalseExamQuestionService {
             Exam exam = data.get();
             trueOrFalseExamQuestion.setExam(exam);
             trueOrFalseExamQuestion.setType(TRUEFALSE);
+            TrueOrFalseExamQuestion saved = trueOrFalseExamQuestionRepository.save(trueOrFalseExamQuestion);
             try
             {
-                return new ResponseEntity( trueOrFalseExamQuestionRepository.save(trueOrFalseExamQuestion),
+                return new ResponseEntity( saved,
                         HttpStatus.OK);
             }
             catch (Exception e)
