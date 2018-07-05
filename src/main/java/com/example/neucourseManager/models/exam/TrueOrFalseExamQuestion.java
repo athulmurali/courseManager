@@ -1,12 +1,10 @@
 package com.example.neucourseManager.models.exam;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 
 @Entity
-public class TrueOrFalseExamQuestion extends Question {
+public class TrueOrFalseExamQuestion extends BaseExamQuestion {
     private boolean answer;
 
     public boolean isAnswer() {

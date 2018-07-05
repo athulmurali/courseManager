@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class MultipleChoiceExamQuestion extends  Question{
+public class MultipleChoiceExamQuestion extends BaseExamQuestion {
 
     @ElementCollection
     private List<String> options = new ArrayList<>();

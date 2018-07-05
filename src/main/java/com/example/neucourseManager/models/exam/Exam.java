@@ -26,7 +26,7 @@ public class Exam {
 
     @OneToMany(mappedBy="exam", orphanRemoval = true)
     @JsonIgnore
-    private List<Question> questions;
+    private List<BaseExamQuestion> questions;
 
 
 
@@ -51,10 +51,10 @@ public class Exam {
     public void setDescription(String description) {
         this.description = description;
     }
-    public List<Question> getQuestions() {
+    public List<BaseExamQuestion> getQuestions() {
         return questions;
     }
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(List<BaseExamQuestion> questions) {
         this.questions = questions;
     }
 

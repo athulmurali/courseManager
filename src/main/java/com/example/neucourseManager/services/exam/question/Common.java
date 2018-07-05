@@ -1,8 +1,6 @@
 package com.example.neucourseManager.services.exam.question;
 
-import com.example.neucourseManager.models.exam.Exam;
-import com.example.neucourseManager.models.exam.Question;
-import com.example.neucourseManager.repositories.exam.ExamRepository;
+import com.example.neucourseManager.models.exam.BaseExamQuestion;
 import com.example.neucourseManager.repositories.exam.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -37,18 +35,18 @@ public class Common {
     @GetMapping("/api/exam/{eid}/question")
     public ResponseEntity<?> getQuestionsByExam(@PathVariable("eid") int eid)
     {
-        List<Question> questionList = new ArrayList();
+        List<BaseExamQuestion> baseExamQuestionList = new ArrayList();
 
         try{
-            questionList = (List<Question>) questionRepository.findAll();
-            questionList = questionList.stream().filter(question -> question.getExam().
+            baseExamQuestionList = (List<BaseExamQuestion>) questionRepository.findAll();
+            baseExamQuestionList = baseExamQuestionList.stream().filter(question -> question.getExam().
                     getId() == eid).collect(Collectors.toList());
-            return new ResponseEntity(questionList, HttpStatus.OK);
+            return new ResponseEntity(baseExamQuestionList, HttpStatus.OK);
         }
         catch(Exception e){
             System.out.println("Exception : ");
             System.out.println(e);
-            return new ResponseEntity(questionList, HttpStatus.OK);
+            return new ResponseEntity(baseExamQuestionList, HttpStatus.OK);
         }
     }
 

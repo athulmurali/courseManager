@@ -4,7 +4,7 @@ package com.example.neucourseManager.models.exam;
 import javax.persistence.Entity;
 
 @Entity
-public class EssayExamQuestion extends Question{
+public class EssayExamQuestion extends BaseExamQuestion {
 
     private String essayAnswer;
 

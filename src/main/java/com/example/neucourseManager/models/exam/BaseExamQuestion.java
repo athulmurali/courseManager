@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public class Question {
+public class BaseExamQuestion {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;

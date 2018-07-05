@@ -1,6 +1,7 @@
 package com.example.neucourseManager.models.exam;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class FillInTheBlanksExamQuestion
 
-        extends Question {
+        extends BaseExamQuestion {
 
 
     public String getTextWithBrackets() {
