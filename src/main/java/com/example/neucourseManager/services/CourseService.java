@@ -89,6 +89,8 @@ public class CourseService {
                 {
                     Course newcourse = currentCourse.get();
                     newcourse.setTitle(course.getTitle());
+                    newcourse.setPrivate(course.getPrivate());
+
 
                     return new ResponseEntity<>(courseRepository.save(newcourse), HttpStatus.OK);
                 }

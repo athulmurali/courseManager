@@ -36,6 +36,8 @@ public class Course { @Id
     private Date modified;
 
 
+    private Boolean isPrivate=false;
+
     public int getId() {
         return id;
     }
@@ -58,5 +60,13 @@ public class Course { @Id
 
     public void setModules(List<Module> modules) {
         this.modules = modules;
+    }
+
+    public Boolean getPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(Boolean aPrivate) {
+        isPrivate = aPrivate;
     }
 }
